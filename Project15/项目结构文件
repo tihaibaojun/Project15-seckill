@@ -1,0 +1,32 @@
+抢购服务程序
+
+@Slf4j
+@Service
+public static SeckillMQService{
+    1.Redis key
+    2.topic
+    3.tag
+    4.Lau 脚本
+    5.redis工具对象
+    6.RocketMQ工具对象
+    7.构造方法：redis对象，rocketMQ对象
+    8.定义seckill方法
+        商品库存key
+        用户key
+
+        防key过期：
+        redis.hasKey(stockKey)判断key是否存在，如存在则返回true
+            redis.opsforvalue().setIfAbsent(参数1,参数2)如果参数1不存在，则插入参数2内容
+
+        创建Lua执行对象：Long result = redis.execute()
+
+        判断当前库存状态
+        定义请求标识对象：String requestId = UUID.randomUUID().toString().replace("-","");
+
+        生成结果占为符，避免出现key报错
+        将数据存进map
+
+        try{
+            发送到RocketMQ：rocketMQ.convertAndSend(topic+":"+tag,(Object)msg);
+
+        }
