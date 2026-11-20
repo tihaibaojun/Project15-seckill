@@ -1,0 +1,16 @@
+src/
+ └── com/
+     └── sect/
+         └── Object/
+             └── FanShe/
+                 └── ProjectFive/
+                     ├── MyComponent.java        // 注解：标记普通 bean
+                     ├── MyAutowired.java        // 注解：标记要注入的字段
+                     ├── MyController.java       // 注解：标记控制器（新增）
+                     ├── MyRequestMapping.java   // 注解：标记 URL（新增）
+                     ├── ClassScanner.java       // 工具：扫描包下所有类
+                     ├── MiniContainer.java      // 容器：扫描 + 创建 + 注入
+                     ├── Dispatcher.java         // 分发器：路由 + 反射调用（新增）
+                     ├── UserService.java        // 用户业务类
+                     ├── UserController.java     // 用户控制器
+                     └── Main.java               // 启动入口
