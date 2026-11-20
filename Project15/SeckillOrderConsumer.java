@@ -73,7 +73,7 @@ public class SeckillOrderConsumer implements RocketMQListener<Map<String, Object
                     "SUCCESS:" + order.getId(),
                     60, TimeUnit.SECONDS
             );
-            log.info("秒杀完成 ✅ → requestId={}, orderId={}", requestId, order.getId());
+            log.info("秒杀完成 → requestId={}, orderId={}", requestId, order.getId());
 
         }
         // SeckillBusinessException作用是捕获业务异常
