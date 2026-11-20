@@ -117,10 +117,10 @@ public class SeckillMqService {
             return Map.of("code", -1, "msg", "系统异常，请重试");
         }
         if (result == -2L) {
-            return Map.of("code", -2, "msg", "❌ 每人限购一件，您已经抢到过了");
+            return Map.of("code", -2, "msg", "每人限购一件，您已经抢到过了");
         }
         if (result < 0) {
-            return Map.of("code", -1, "msg", "❌ 手慢了，商品已被抢光！");
+            return Map.of("code", -1, "msg", "手慢了，商品已被抢光！");
         }
 
         // ③ 生成唯一 requestId，发 MQ
@@ -147,7 +147,7 @@ public class SeckillMqService {
             // 返回值约定：code=0 表示请求已入队，正在排队处理
             return Map.of(
                     "code",      0,
-                    "msg",       "✅ 秒杀请求已入队，正在排队处理",
+                    "msg",       "秒杀请求已入队，正在排队处理",
                     "requestId", requestId,
                     "remainStock", result   // 扣完后 Redis 剩余库存
             );
@@ -157,7 +157,7 @@ public class SeckillMqService {
             log.error("RocketMQ 发送失败，回补 Redis, productId={}, userId={}", productId, userId, e);
             rollbackRedis(stockKey, usersKey, userId);
             redis.delete(RESULT_KEY + requestId);
-            return Map.of("code", -1, "msg", "❌ 系统繁忙，请重试");
+            return Map.of("code", -1, "msg", "系统繁忙，请重试");
         }
     }
 
